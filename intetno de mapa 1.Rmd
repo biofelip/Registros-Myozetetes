@@ -18,7 +18,7 @@ A continuación encontrará un mapa interactivo con todos los  especimenes usado
 
 colnames(bd)=c("nc","ssp", "UTO", "id", "col", "pais", "Estado", "loc", "lat", "long", "typ")
 leaflet(bd) %>% addTiles() %>% 
-  addMarkers(lng = ~long, lat = ~lat ,
+  addCircleMarkers(lng = ~long, lat = ~lat , radius = 4, fillColor = ~typ, color= ~typ,
              popup = ~paste0("Subespecie: ",ssp,
                             "<br/> UTO: ", UTO,
                             "<br/> Origen: ", col,
