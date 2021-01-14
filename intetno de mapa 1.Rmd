@@ -1,0 +1,32 @@
+---
+title: "Mapa de registros"
+author: "Juan Camilo Rios-Orjuela, Juan Felipe Escobar-Calderón"
+date: "14/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Mapa de registros *Myozetets cayanensis*
+
+A continuación encontrará un mapa interactivo con todos los  especimenes usados para el desarrollo de la tesis de maestría "Revisión taxonómica de una especie neotropical ampliamente distribuida: el complejo *Myozetets cayanensis* (Linneaus, 1766)(Aves: Tyrannidae)" presentada por Juan Camilo Rios-Orjuela. Cada marcador en el mapa representa un especimen  utilizado, para obtener información adicional (Localidad, Museo o Base de datos de origen, tipo de datos, etc.), haga click en el marcador. Este mapa fue desarrollado utilizando el paquete *Leaflet* (Cheng, Karambelkar  and Xie, 2021)
+```{r include=FALSE, echo=FALSE}
+library(leaflet)
+bd=read_csv("Muestreo_Datos_Todos.csv")
+colnames(bd)=c("nc","ssp", "UTO", "id", "col", "pais", "Estado", "loc", "lat", "long", "typ")
+leaflet(bd) %>% addTiles() %>% 
+  addMarkers(lng = ~long, lat = ~lat ,
+             popup = ~paste0("Subespecie= ",ssp,
+                            "<br/> UTO= ", UTO,
+                            "<br/> Origen: ", col,
+                            "<br/> Id: ", id,
+                            "<br/> País: ", pais,
+                            "<br/> Estado: ", Estado,
+                            "<br/> Localidad:", loc,
+                            "<br/> Tipo", typ))
+
+
+```
+
